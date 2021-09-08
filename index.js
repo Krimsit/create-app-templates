@@ -26,19 +26,21 @@ const getDependencies = (template, language) =>
             template === "react" &&
                 language === "js" && [
                     [
-                        "webpack",
-                        "webpack-cli",
+                        "@babel/cli",
                         "@babel/core",
-                        "babel-loader",
                         "@babel/preset-env",
                         "@babel/preset-react",
-                        "style-loader",
+                        "babel-loader",
                         "css-loader",
-                        "less-loader",
-                        "postcss-loader",
+                        "eslint-webpack-plugin",
                         "file-loader",
                         "html-webpack-plugin",
-                        "eslint-webpack-plugin",
+                        "less-loader",
+                        "postcss-loader",
+                        "style-loader",
+                        "webpack",
+                        "webpack-cli",
+                        "webpack-dev-server",
                     ],
                     ["react", "react-dom", "styled-components", "classnames"],
                 ]
