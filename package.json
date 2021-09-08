@@ -1,0 +1,20 @@
+{
+    "name": "create-templates",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "commander": "^8.1.0",
+        "fs-extra": "^10.0.0",
+        "inquirer": "^8.1.2"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module"
+}
