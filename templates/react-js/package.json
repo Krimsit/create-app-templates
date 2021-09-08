@@ -3,15 +3,17 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    "script": {
+    "scripts": {
         "start": "webpack serve --mode development",
         "build": "webpack --mode=production"
     },
     "keywords": [],
     "license": "ISC",
     "type": "module",
-    "presets": [
-        "@babel/preset-env",
-        "@babel/preset-react"
-    ]
+    "babel": {
+        "presets": [
+            "@babel/preset-env",
+            "@babel/preset-react"
+        ]
+    }
 }

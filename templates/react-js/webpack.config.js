@@ -1,21 +1,18 @@
-import { HotModuleReplacementPlugin } from "webpack"
-import { resolve as _resolve } from "path"
-import HtmlWebpackPlugin from "html-webpack-plugin"
-import ESLintPlugin from "eslint-webpack-plugin"
+const webpack = require("webpack")
+const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
     mode: "development",
-    entry: "./src/index.jsx",
+    entry: "./src/index.js",
+    resolve: {
+        modules: [path.resolve(__dirname, "src"), "node_modules"],
+        extensions: [".js", ".jsx"],
+    },
     output: {
-        path: _resolve(__dirname, "dist"),
+        path: path.resolve(__dirname, "dist"),
         filename: "[name].bundle.js",
         chunkFilename: "[name].chunk.js",
-    },
-    resolve: {
-        modules: [path.join(__dirname, "src"), "node_modules"],
-        alias: {
-            react: path.join(__dirname, "node_modules", "react"),
-        },
     },
     devServer: {
         open: true,
@@ -50,12 +47,9 @@ module.exports = {
         ],
     },
     plugins: [
-        new HotModuleReplacementPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: "dist/index.html",
-        }),
-        new ESLintPlugin({
-            extensions: ["js", "jsx"],
         }),
     ],
 }
