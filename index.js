@@ -119,7 +119,7 @@ cli_program.command("create <name>").action((name, cmd) => {
                     },
                 ])
                 .then((option) => {
-                    createPackageJSON(name)
+                    createPackageJSON(name, option.template, option.language)
                         .then((result) => {
                             console.log(chalk.green(result))
                             return installDependencies(name, option.template, option.language)
