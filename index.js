@@ -10,12 +10,25 @@ const cli_program = new commander.Command("Create App")
 
 cli_program.version("1.0.0").description("123")
 
-const createPackageJSON = (name) =>
+const createPackageJSON = (name, template, language) =>
     new Promise((resolve, reject) => {
         console.log(chalk.blue("Create a package.json file..."))
         fs.readFile(`${name}/package.json`).then((file) => {
-            const data = file.toString().replace('"test": "echo \\"Error: no test specified\\" && exit 1"', `"start": "webpack serve --mode development", "build": "webpack --mode production"`)
-            fs.writeFile(`${name}/package.json`, data, (err) => (err ? reject(err) : resolve("package.json file created")))
+            const data = JSON.parse(file)
+            if (template === "react") {
+                if (language === "js") {
+                    data.name = name
+                    data.scripts = {
+                        start: "webpack serve --mode development",
+                        build: "webpack --mode production",
+                    }
+                    data.type = "module"
+                    data.babel = {
+                        presets: ["@babel/preset-env", "@babel/preset-react"],
+                    }
+                }
+            }
+            fs.writeFile(`${name}/package.json`, JSON.stringify(data), (err) => (err ? reject(err) : resolve("package.json file created")))
         })
     })
 
@@ -52,7 +65,7 @@ const installDependencies = (name, template, language) =>
         getDependencies(template, language).then((dependencies) => {
             console.log(chalk.green("Dependencies successfully retrieved"))
             console.log(chalk.blue("Installing dependencies..."))
-            exec(`cd ${name} && npm install --save-dev ${dependencies[0].join(" ")} && npm install --save ${dependencies[1].join(" ")}`, (initErr, initStdout, initStderr) => {
+            exec(`cd ${name} && npm i -D ${dependencies[0].join(" ")} && npm install -S ${dependencies[1].join(" ")}`, (initErr, initStdout, initStderr) => {
                 if (initErr) {
                     reject(initErr)
                 } else {
