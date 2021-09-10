@@ -6,6 +6,14 @@
     "preferGlobal": true,
     "bin": "./index.js",
     "homepage": "https://github.com/Krimsit/create-app-templates",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Krimsit/create-app-templates.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Krimsit/create-app-templates/issues",
+        "email": "KrimsitDjenkis@yandex.ru"
+    },
     "dependencies": {
         "chalk": "^4.1.2",
         "commander": "^8.1.0",
