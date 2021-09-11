@@ -1,7 +1,7 @@
 {
-    "name": "cat",
+    "name": "create-app-templates",
     "version": "1.0.0",
-    "description": "CAT - Create-app-Templates",
+    "description": "Create-app-Templates",
     "main": "index.js",
     "preferGlobal": true,
     "bin": "./index.js",
