@@ -19,12 +19,12 @@ const createPackageJSON = (name, template, language) =>
                 if (language === "js") {
                     data.name = name
                     data.scripts = {
-                        start: "webpack serve --mode development",
-                        build: "webpack --mode production",
+                        start: "webpack-dashboard webpack serve --mode development",
+                        build: "webpack-dashboard webpack --mode production",
                     }
                     data.type = "module"
                     data.babel = {
-                        presets: ["@babel/preset-env", "@babel/preset-react"],
+                        presets: ["@babel/preset-env", { loose: false }, "@babel/preset-react"],
                     }
                 }
             }
@@ -44,15 +44,21 @@ const getDependencies = (template, language) =>
                         "@babel/preset-env",
                         "@babel/preset-react",
                         "babel-loader",
+                        "clean-webpack-plugin",
                         "css-loader",
+                        "css-minimizer-webpack-plugin",
+                        "dotenv",
                         "eslint-webpack-plugin",
                         "file-loader",
+                        "hard-source-webpack-plugin",
                         "html-webpack-plugin",
                         "less-loader",
                         "postcss-loader",
+                        "postcss-safe-parser",
                         "style-loader",
                         "webpack",
                         "webpack-cli",
+                        "webpack-dashboard",
                         "webpack-dev-server",
                     ],
                     ["react", "react-dom", "styled-components", "classnames"],
