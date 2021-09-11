@@ -1,7 +1,7 @@
 {
-    "name": "create-app-templates",
+    "name": "cat",
     "version": "1.0.0",
-    "description": "",
+    "description": "CAT - Create-app-Templates",
     "main": "index.js",
     "preferGlobal": true,
     "bin": "./index.js",
@@ -24,7 +24,13 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "keywords": [],
+    "keywords": [
+        "templates",
+        "react",
+        "typescript",
+        "javascript",
+        "node"
+    ],
     "author": {
         "name": "Andrey Subbotin",
         "email": "KrimsitDjenkis@yandex.ru",
