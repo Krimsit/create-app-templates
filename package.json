@@ -1,6 +1,6 @@
 {
     "name": "create-app-templates",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Create-app-Templates",
     "main": "index.js",
     "preferGlobal": true,
@@ -19,10 +19,6 @@
         "commander": "^8.1.0",
         "fs-extra": "^10.0.0",
         "inquirer": "^8.1.2"
-    },
-    "devDependencies": {},
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "keywords": [
         "templates",
