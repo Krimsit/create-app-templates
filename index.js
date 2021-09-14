@@ -19,8 +19,8 @@ const createPackageJSON = (name, template, language) =>
                 if (language === "js") {
                     data.name = name
                     data.scripts = {
-                        start: "webpack-dashboard webpack serve --mode development",
-                        build: "webpack-dashboard webpack --mode production",
+                        start: "webpack-dashboard webpack serve --mode=development",
+                        build: "webpack-dashboard webpack --mode=production",
                     }
                     data.type = "module"
                     data.babel = {
