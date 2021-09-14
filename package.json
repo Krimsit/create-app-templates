@@ -1,11 +1,11 @@
 {
     "name": "create-app-templates",
-    "version": "1.0.2",
+    "version": "1.0.4",
     "description": "Create-app-Templates",
     "main": "index.js",
     "preferGlobal": true,
     "bin": "./index.js",
-    "homepage": "https://github.com/Krimsit/create-app-templates",
+    "homepage": "https://github.com/Krimsit/create-app-templates#readme",
     "repository": {
         "type": "git",
         "url": "https://github.com/Krimsit/create-app-templates.git"
