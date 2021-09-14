@@ -1,6 +1,6 @@
 {
     "name": "create-app-templates",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "Create-app-Templates",
     "main": "index.js",
     "preferGlobal": true,
