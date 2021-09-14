@@ -23,7 +23,7 @@ const createPackageJSON = (name, template, language) =>
                         build: "webpack-dashboard -- webpack --mode=production",
                     }
                     data.babel = {
-                        presets: ["@babel/preset-env", { loose: false }, "@babel/preset-react"],
+                        presets: ["@babel/preset-env", "@babel/preset-react"],
                     }
                 }
             }
