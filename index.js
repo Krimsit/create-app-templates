@@ -10,75 +10,15 @@ const cli_program = new commander.Command("Create App")
 
 cli_program.version("1.0.0").description("123")
 
-const createPackageJSON = (name, template, language) =>
-    new Promise((resolve, reject) => {
-        console.log(chalk.blue("Create a package.json file..."))
-        fs.readFile(`${name}/package.json`).then((file) => {
-            const data = JSON.parse(file)
-            if (template === "react") {
-                if (language === "js") {
-                    data.name = name
-                    data.scripts = {
-                        start: "webpack-dashboard -- webpack serve --mode=development",
-                        build: "webpack-dashboard -- webpack --mode=production",
-                    }
-                    data.babel = {
-                        presets: ["@babel/preset-env", "@babel/preset-react"],
-                    }
-                }
-            }
-            fs.writeFile(`${name}/package.json`, JSON.stringify(data), (err) => (err ? reject(err) : resolve("package.json file created")))
-        })
-    })
-
-const getDependencies = (template, language) =>
-    new Promise((resolve, reject) => {
-        console.log(chalk.blue("Get dependencies..."))
-        resolve(
-            template === "react" &&
-                language === "js" && [
-                    [
-                        "@babel/cli",
-                        "@babel/core",
-                        "@babel/preset-env",
-                        "@babel/preset-react",
-                        "babel-loader",
-                        "clean-webpack-plugin",
-                        "css-loader",
-                        "css-minimizer-webpack-plugin",
-                        "dotenv",
-                        "eslint-webpack-plugin",
-                        "file-loader",
-                        "html-webpack-plugin",
-                        "less-loader",
-                        "mini-css-extract-plugin",
-                        "optimize-css-assets-webpack-plugin",
-                        "postcss-loader",
-                        "postcss-safe-parser",
-                        "style-loader",
-                        "webpack",
-                        "webpack-cli",
-                        "webpack-dashboard",
-                        "webpack-dev-server",
-                        "webpack-notifier",
-                    ],
-                    ["react", "react-dom", "styled-components", "classnames"],
-                ]
-        )
-    })
-
 const installDependencies = (name, template, language) =>
     new Promise((resolve, reject) => {
-        getDependencies(template, language).then((dependencies) => {
-            console.log(chalk.green("Dependencies successfully retrieved"))
-            console.log(chalk.blue("Installing dependencies..."))
-            exec(`cd ${name} && npm i -D ${dependencies[0].join(" ")} && npm install -S ${dependencies[1].join(" ")}`, (initErr, initStdout, initStderr) => {
-                if (initErr) {
-                    reject(initErr)
-                } else {
-                    resolve("Installation of dependencies was successful")
-                }
-            })
+        console.log(chalk.blue("Installing dependencies..."))
+        exec(`cd ${name} && npm i`, (initErr, initStdout, initStderr) => {
+            if (initErr) {
+                reject(err)
+            } else {
+                resolve("Installation of dependencies was successful")
+            }
         })
     })
 
@@ -126,14 +66,10 @@ cli_program.command("create <name>").action((name, cmd) => {
                     },
                 ])
                 .then((option) => {
-                    createPackageJSON(name, option.template, option.language)
+                    getTemplate(name, option.template, option.language)
                         .then((result) => {
                             console.log(chalk.green(result))
-                            return installDependencies(name, option.template, option.language)
-                        })
-                        .then((result) => {
-                            console.log(chalk.green(result))
-                            return getTemplate(name, option.template, option.language)
+                            return installDependencies(name)
                         })
                         .then((result) => {
                             console.log(chalk.green(result))
