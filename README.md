@@ -24,28 +24,21 @@ Next, you will be asked to select the template of which application you want to 
 
 Available templates:
 
-```
-react
-```
-
-Avaible languages:
-
-```
-js
-```
+-   react-js
+-   react-ts
 
 ---
 
 ### Templates
 
-React:
+React-js:
 
 `create-app-templates create react_app`
 
-This command with the choice of template react and js language will create a directory named `react_app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies: This command will create a directory named `react_app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies:
+This command with the choice of template react and js language will create a directory named `reactjs_app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies: This command will create a directory named `reactjs_app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies:
 
 ```
-react-app
+reactjs-app
     -dist
         index.html
     -src
@@ -56,8 +49,11 @@ react-app
         -utils
         App.jsx
         index.jsx
+    package.json
     webpack.config.js
 ```
+
+React-ts
 
 When the project is created, enter the command:
 
