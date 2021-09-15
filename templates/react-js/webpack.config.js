@@ -5,7 +5,6 @@ const DashboardPlugin = require("webpack-dashboard/plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const safePostCssParser = require("postcss-safe-parser")
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const TerserPlugin = require("terser-webpack-plugin")
 const dotenv = require("dotenv")
 const WebpackNotifierPlugin = require("webpack-notifier")
@@ -90,18 +89,6 @@ module.exports = (argv) => {
                             comparisons: false,
                             inline: 2,
                         },
-                    },
-                }),
-                new OptimizeCSSAssetsPlugin({
-                    cssProcessorOptions: {
-                        parser: safePostCssParser,
-                        map: {
-                            inline: false,
-                            annotation: true,
-                        },
-                    },
-                    cssProcessorPluginOptions: {
-                        preset: ["default", { minifyFontValues: { removeQuotes: false } }],
                     },
                 }),
             ],
