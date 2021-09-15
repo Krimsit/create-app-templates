@@ -30,15 +30,13 @@ Available templates:
 ---
 
 ### Templates
+`create-app-templates create app`
+
+This command with the choice of template react and js language will create a directory named `app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies: This command will create a directory named `app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies:
 
 React-js:
-
-`create-app-templates create react_app`
-
-This command with the choice of template react and js language will create a directory named `react_app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies: This command will create a directory named `react_app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies:
-
 ```
-reactjs-app
+app
     -dist
         index.html
     -src
@@ -54,6 +52,23 @@ reactjs-app
 ```
 
 React-ts
+```
+app
+    -dist
+        index.html
+    -src
+        -components
+        -container
+        -modules
+        -styles
+        -utils
+        App.tsx
+        index.tsx
+    package.json
+    webpack.config.js
+    .eslintrc.json
+    tsconfig.json
+```
 
 When the project is created, enter the command:
 
@@ -63,7 +78,6 @@ When the project is created, enter the command:
 
 ### Future
 
--   [ ] React-ts
 -   [ ] Selecting additional dependencies
 -   [ ] Choosing style preprocessor
 -   [ ] Node Express-js
