@@ -10,6 +10,8 @@ const cli_program = new commander.Command("Create App")
 
 cli_program.version("1.0.0").description("123")
 
+let template, language
+
 const installDependencies = (name, template, language) =>
     new Promise((resolve, reject) => {
         console.log(chalk.blue("Installing dependencies..."))
@@ -46,6 +48,10 @@ const clearCache = (name) =>
             .catch((err) => reject(err))
     })
 
+const getLanguage = (template) => {
+    return template === "react" && "js, ts"
+}
+
 cli_program.command("create <name>").action((name, cmd) => {
     exec(`mkdir ${name} && cd ${name} && npm init -f`, (initErr, initStdout, initStderr) => {
         if (initErr) {
@@ -59,29 +65,36 @@ cli_program.command("create <name>").action((name, cmd) => {
                         name: "template",
                         message: "Choose a template type (react): ",
                     },
-                    {
-                        type: "input",
-                        name: "language",
-                        message: "Choose language (js): ",
-                    },
                 ])
                 .then((option) => {
-                    getTemplate(name, option.template, option.language)
-                        .then((result) => {
-                            console.log(chalk.green(result))
-                            return installDependencies(name)
+                    template = option.template
+                    inquirer
+                        .prompt([
+                            {
+                                type: "input",
+                                name: "language",
+                                message: `Choose language (${getLanguage(template)}): `,
+                            },
+                        ])
+                        .then((option) => {
+                            language = option.language
+                            getTemplate(name, template, language)
+                                .then((result) => {
+                                    console.log(chalk.green(result))
+                                    return installDependencies(name)
+                                })
+                                .then((result) => {
+                                    console.log(chalk.green(result))
+                                    return clearCache(name)
+                                })
+                                .then((result) => {
+                                    console.log(chalk.green(result))
+                                })
+                                .then(() => {
+                                    console.log(chalk.green(`Project ${name} successfully created `))
+                                })
+                                .catch((err) => console.log(chalk.red(err)))
                         })
-                        .then((result) => {
-                            console.log(chalk.green(result))
-                            return clearCache(name)
-                        })
-                        .then((result) => {
-                            console.log(chalk.green(result))
-                        })
-                        .then(() => {
-                            console.log(chalk.green(`Project ${name} successfully created `))
-                        })
-                        .catch((err) => console.log(chalk.red(err)))
                 })
         }
     })
