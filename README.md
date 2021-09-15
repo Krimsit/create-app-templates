@@ -35,7 +35,7 @@ React-js:
 
 `create-app-templates create react_app`
 
-This command with the choice of template react and js language will create a directory named `reactjs_app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies: This command will create a directory named `reactjs_app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies:
+This command with the choice of template react and js language will create a directory named `react_app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies: This command will create a directory named `react_app` inside the current folder. Inside this directory, it will generate the original project structure and install the transitive dependencies:
 
 ```
 reactjs-app
